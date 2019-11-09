@@ -1,0 +1,375 @@
+// proiect_info2.cpp : This file contains the 'main' function. Program execution begins and ends there.
+//
+
+#include <iostream>
+#include <string.h>
+#include <Windows.h> 
+#include <stdlib.h>
+#include <utility> 
+
+
+using namespace std;
+
+ 
+void Console_Clear() {
+
+	system("CLS");
+
+}
+
+int default_array[100][100];
+ 
+bool arrayBOOL = false;
+int main()
+{ 
+	pair <int, int > coordMIN;
+	pair <int, int > coordMAX;
+	
+	//menu 
+	int menu_choice; 
+	 
+	do
+	{
+		cout << "Te rog sa selectezi  o varianta :" << endl;
+
+		cout << "1- BORDARE MATRICE CU CARACTER CERUT " << endl; 
+		cout << "2-GASIRE ELEMENT MININM/MAXIM IN MATRICE " << endl; 
+		cout << "3-ADUNARE 2 MATRICI " << endl; 
+		cout << "4-INMULTIRE 2 MATRICI " << endl; 
+		cout << "5-RIDICARE LA PUTERE A MATRICII " << endl; 
+		cin >> menu_choice; 
+		
+		switch ( menu_choice )
+		{
+		case 1: 
+			int  n, m;
+
+			int A[100][100];
+			//verificam daca utilizatorul are o matrice salvata anterior 
+
+			if (arrayBOOL)
+			{
+				cout << "Am detectat  o matrice salvata anterior. Doriti sa initializati alta ? " << endl;
+				cout << "1-DA" << " " << "2-NU" << endl;
+				int change_array;
+				cin >> change_array; 
+				//se initializeaza o alta matrice 
+				if (change_array == 1) 
+				{
+					Console_Clear();
+					//date matrice 
+
+					cout << "Introdu numarul de linii si de coloane" << endl;
+					
+					cin >> n >> m;
+					Console_Clear();
+					cout << "Introdu pe rand elementele matricei" << endl;
+
+
+					// citire matrice 
+					for (int i = 0; i < n; i++)
+					{
+						for (int j = 0; j < m; j++)
+						{
+							cin >> A[i][j];
+						}
+					}
+					arrayBOOL = false; 
+					goto END_READ;
+				}
+				 //daca utlizatoru vrea sa foloseasca aceeeasi matrice 
+				else 
+				{
+
+					for (int i = 0; i < n; i++)
+					{
+						for (int j = 0; j < m; j++)
+						{
+							A[i][j] = default_array[i][j]; 
+						}
+					}
+
+					goto END_READ;
+				}
+			}
+
+			
+			Console_Clear();
+			//date matrice 
+
+			cout << "Introdu numarul de linii si de coloane" << endl;
+
+			cin >> n >> m;
+			Console_Clear();
+			cout << "Introdu pe rand elementele matricei" << endl;
+
+
+			// citire matrice 
+			for (int i = 0; i < n; i++)
+			{
+				for (int j = 0; j < m; j++)
+				{
+					cin >> A[i][j];
+				}
+			}
+
+			
+
+		END_READ: cout << "Introdu numarul cu care vrei sa bordezi matricea" << endl;
+			int border_number; 
+			cin >> border_number; 
+
+			// se face bordarea matricei 
+			cout << "Se executa bordarea matricei ..."<<endl;
+				Sleep(2500);
+                
+				int B[100][100];
+				 for(int  i = 0 ; i < n+2;i++)
+				 {
+					 for (int j = 0; j < m+2; j++)
+			        {
+
+						 if (i == 0 || j == 0 || i == n + 1 || j == m + 1) B[i][j] = border_number;
+						 else { B[i][j] = 0; }
+				    }
+				 }
+				
+				 for (int i = 0; i < n; i++)
+				 {
+					 for ( int j = 0 ; j<m; j++)
+					 {
+					 
+						 B[i + 1][j + 1] = A[i][j];
+
+					 }
+
+
+				 }
+
+				 for (int i = 0; i < n + 2; i++)
+				 {
+					 for (int j = 0; j < m + 2; j++)
+					 {
+
+						 cout << B[i][j]<< " ";
+					 }
+					 cout << endl;
+				 }
+    
+				 cout << "Doresti sa salvezi matricea introdusa anterior pentru toate exemplele ? " << endl;
+				 cout << "1-DA" << " " << "2-NU" << endl;
+				 int rasp; 
+				 cin >> rasp; 
+				 if (rasp == 1)
+				 {
+					 for (int i = 0; i < n; i++)
+					 {
+
+						 for (int j = 0; j < m; j++) {
+
+							 default_array[i][j] = A[i][j];
+
+						 }
+
+					}
+					 
+					 cout << "Matrice salvata cu succes ! " << endl; 
+					 
+					 arrayBOOL = true;
+				 }
+				 else arrayBOOL = false; 
+
+				 system("pause");
+				 Console_Clear();
+
+			break;
+		case 2 : 
+			
+			int C[100][100];
+			
+
+			if (arrayBOOL)
+			{
+				cout << "Am detectat  o matrice salvata anterior. Doriti sa initializati alta ? " << endl;
+				cout << "1-DA" << " " << "2-NU" << endl;
+				int change_array;
+				cin >> change_array;
+				//se initializeaza o alta matrice 
+
+				if (change_array == 1)
+				{
+					Console_Clear();
+					//date matrice 
+
+					cout << "Introdu numarul de linii si de coloane" << endl;
+
+					cin >> n >> m;
+					Console_Clear();
+					cout << "Introdu pe rand elementele matricei" << endl;
+
+
+					// citire matrice 
+					for (int i = 0; i < n; i++)
+					{
+						for (int j = 0; j < m; j++)
+						{
+							cin >> C[i][j];
+						}
+					}
+					goto END_READ1;
+				}
+				//utilizatrorul decide sa foloseasca matricea default 
+				else 
+				{
+				
+					for (int i = 0; i < n; i++)
+					{
+						for (int j = 0; j < m; j++)
+						{
+							C[i][j] = default_array[i][j];
+						}
+					}
+				
+					goto END_READ1;	
+				}
+
+			}
+
+
+			//initializare matrice daca nu exista una deja salvata
+
+
+			Console_Clear();
+			//date matrice 
+
+			cout << "Introdu numarul de linii si de coloane" << endl;
+
+			cin >> n >> m;
+			Console_Clear();
+			cout << "Introdu pe rand elementele matricei" << endl;
+
+
+			// citire matrice 
+			for (int i = 0; i < n; i++)
+			{
+				for (int j = 0; j < m; j++)
+				{
+					cin >> C[i][j];
+				}
+			}
+
+			 END_READ1:
+
+			
+			cout << "Afisare minim matrice - 1 " << endl;
+			cout << "Afisare maxim matrice - 2 " << endl;
+			int rasp1; 
+			cin >> rasp1;
+			
+			switch (rasp1)
+					
+			{
+				;
+				//case 1 -> se afiseaza minimul matricei 
+			case 1 : 
+
+	
+				for (int i = 0; i < n; i++)
+				{
+					for (int j = 0; j < m; j++)
+					{
+						if (A[i][j]<min)
+						{
+							min = A[i][j];
+							coordMIN.first = i;
+							coordMIN.second = j;
+						}
+					}
+				}
+				cout << "Valoare minima a matricei este " << " " << min << endl;
+				cout << "Coordonatele acesteia sunt" << " " << " linia " << " " << coordMIN.first << " " << "coloana" << " " << coordMIN.second << endl;
+				system("pasue ");
+				break;
+
+
+			//case 2 -> se afiseaza maximul matricei 
+
+			case 2  : 
+
+
+				int max = -9999;
+
+				for (int i = 0; i < n; i++)
+				{
+					for (int j = 0; j < m; j++)
+					{
+						if (A[i][j] > max)
+						{
+							min = A[i][j];
+							coordMAX.first = i;
+							coordMAX.second = j;
+						}
+					}
+				}
+
+				cout << "Valoare maxima a matricei este " << " " << max << endl;
+				cout << "Coordonatele acesteia sunt" << " " << " linia " << " " << coordMAX.first << " " << "coloana" << " " << coordMAX.second<< endl;
+				system("pasue ");
+
+
+				break; 
+			}
+
+
+
+
+
+			
+			break;
+
+		case 3 :
+			Console_Clear();
+			
+			
+			
+			break;
+		case 4 : 
+			Console_Clear();
+
+			break;
+		case 5: 
+			Console_Clear();
+			
+			
+			
+			break;
+		case 6: 
+			Console_Clear();
+
+			break;
+
+
+
+
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+	}
+
+
+	while (menu_choice != 0);
+
+
+}
+
