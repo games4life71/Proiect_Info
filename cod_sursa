@@ -1,5 +1,3 @@
-// proiect_info2.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
 
 #include <iostream>
 #include <string.h>
@@ -47,7 +45,9 @@ int main()
 		
 		switch ( menu_choice )
 		{
-		case 1: 
+#pragma region Case 1 - Bordare matrice 
+
+		case 1:
 			int  n, m;
 
 			int A[100][100];
@@ -58,15 +58,15 @@ int main()
 				cout << "Am detectat  o matrice salvata anterior. Doriti sa initializati alta ? " << endl;
 				cout << "1-DA" << " " << "2-NU" << endl;
 				int change_array;
-				cin >> change_array; 
+				cin >> change_array;
 				//se initializeaza o alta matrice 
-				if (change_array == 1) 
+				if (change_array == 1)
 				{
 					Console_Clear();
 					//date matrice 
 
 					cout << "Introdu numarul de linii si de coloane" << endl;
-					
+
 					cin >> n >> m;
 					Console_Clear();
 					cout << "Introdu pe rand elementele matricei" << endl;
@@ -80,18 +80,18 @@ int main()
 							cin >> A[i][j];
 						}
 					}
-					arrayBOOL = false; 
+					arrayBOOL = false;
 					goto END_READ;
 				}
-				 //daca utlizatoru vrea sa foloseasca aceeeasi matrice 
-				else 
+				//daca utlizatoru vrea sa foloseasca aceeeasi matrice 
+				else
 				{
 
 					for (int i = 0; i < n; i++)
 					{
 						for (int j = 0; j < m; j++)
 						{
-							A[i][j] = default_array[i][j]; 
+							A[i][j] = default_array[i][j];
 						}
 					}
 
@@ -99,7 +99,7 @@ int main()
 				}
 			}
 
-			
+
 			Console_Clear();
 			//date matrice 
 
@@ -119,81 +119,84 @@ int main()
 				}
 			}
 
-			
+
 
 		END_READ: cout << "Introdu numarul cu care vrei sa bordezi matricea" << endl;
-			int border_number; 
-			cin >> border_number; 
+			int border_number;
+			cin >> border_number;
 
 			// se face bordarea matricei 
-			cout << "Se executa bordarea matricei ..."<<endl;
-				Sleep(2500);
-                
-				int B[100][100];
-				 for(int  i = 0 ; i < n+2;i++)
-				 {
-					 for (int j = 0; j < m+2; j++)
-			        {
+			cout << "Se executa bordarea matricei ..." << endl;
+			Sleep(2500);
 
-						 if (i == 0 || j == 0 || i == n + 1 || j == m + 1) B[i][j] = border_number;
-						 else { B[i][j] = 0; }
-				    }
-				 }
-				
-				 for (int i = 0; i < n; i++)
-				 {
-					 for ( int j = 0 ; j<m; j++)
-					 {
-					 
-						 B[i + 1][j + 1] = A[i][j];
+			int B[100][100];
+			for (int i = 0; i < n + 2; i++)
+			{
+				for (int j = 0; j < m + 2; j++)
+				{
 
-					 }
+					if (i == 0 || j == 0 || i == n + 1 || j == m + 1) B[i][j] = border_number;
+					else { B[i][j] = 0; }
+				}
+			}
+
+			for (int i = 0; i < n; i++)
+			{
+				for (int j = 0; j < m; j++)
+				{
+
+					B[i + 1][j + 1] = A[i][j];
+
+				}
 
 
-				 }
+			}
 
-				 for (int i = 0; i < n + 2; i++)
-				 {
-					 for (int j = 0; j < m + 2; j++)
-					 {
+			for (int i = 0; i < n + 2; i++)
+			{
+				for (int j = 0; j < m + 2; j++)
+				{
 
-						 cout << B[i][j]<< " ";
-					 }
-					 cout << endl;
-				 }
-				 if (!arrayBOOL)
-				 {
-					 cout << "Doresti sa salvezi matricea introdusa anterior pentru toate exemplele ? " << endl;
-					 cout << "1-DA" << " " << "2-NU" << endl;
-					 int rasp;
-					 cin >> rasp;
-					 if (rasp == 1)
-					 {
-						 for (int i = 0; i < n; i++)
-						 {
+					cout << B[i][j] << " ";
+				}
+				cout << endl;
+			}
+			if (!arrayBOOL)
+			{
+				cout << "Doresti sa salvezi matricea introdusa anterior pentru toate exemplele ? " << endl;
+				cout << "1-DA" << " " << "2-NU" << endl;
+				int rasp;
+				cin >> rasp;
+				if (rasp == 1)
+				{
+					for (int i = 0; i < n; i++)
+					{
 
-							 for (int j = 0; j < m; j++) {
+						for (int j = 0; j < m; j++) {
 
-								 default_array[i][j] = A[i][j];
+							default_array[i][j] = A[i][j];
 
-							 }
+						}
 
-						 }
+					}
 
-						 cout << "Matrice salvata cu succes ! " << endl;
+					cout << "Matrice salvata cu succes ! " << endl;
 
-						 arrayBOOL = true;
-					 }
-					 else arrayBOOL = false;
-				 }
-				 system("pause");
-				 Console_Clear();
+					arrayBOOL = true;
+				}
+				else arrayBOOL = false;
+			}
+			system("pause");
+			Console_Clear();
 
 			break;
-		case 2 : 
-			
+#pragma endregion	
+#pragma region case 2 - element maxim /minim
+
+		case 2:
+
 			int C[100][100];
-			
+
 
 			if (arrayBOOL)
 			{
@@ -226,9 +229,9 @@ int main()
 					goto END_READ1;
 				}
 				//utilizatrorul decide sa foloseasca matricea default 
-				else 
+				else
 				{
-				
+
 					for (int i = 0; i < n; i++)
 					{
 						for (int j = 0; j < m; j++)
@@ -236,8 +239,8 @@ int main()
 							C[i][j] = default_array[i][j];
 						}
 					}
-				
-					goto END_READ1;	
+
+					goto END_READ1;
 				}
 
 			}
@@ -265,27 +268,26 @@ int main()
 				}
 			}
 
-			 END_READ1:
+		END_READ1:
 
-			
 			cout << "Afisare minim matrice - 1 " << endl;
 			cout << "Afisare maxim matrice - 2 " << endl;
-			int rasp1; 
+			int rasp1;
 			cin >> rasp1;
-			
-			switch (rasp1)
-					
-			{
-				
-				//case 1 -> se afiseaza minimul matricei 
-			case 1 : 
 
-	
+			switch (rasp1)
+
+			{
+
+				//case 1 -> se afiseaza minimul matricei 
+			case 1: //raspunsul este 1 
+
+
 				for (int i = 0; i < n; i++)
 				{
 					for (int j = 0; j < m; j++)
 					{
-						if (C[i][j]<min)
+						if (C[i][j] < min)
 						{
 							min = C[i][j];
 							coordMIN.first = i;
@@ -296,12 +298,12 @@ int main()
 
 				for (int i = 0; i < n; i++)
 				{
-					for (int j = 0; j < m; j++) 
+					for (int j = 0; j < m; j++)
 					{
 
-						cout << C[i][j]<< " ";
+						cout << C[i][j] << " ";
 
-         			}
+					}
 
 					cout << endl;
 
@@ -311,14 +313,14 @@ int main()
 				cout << endl;
 
 				cout << "Valoare minima a matricei este " << " " << min << endl;
-				cout << "Coordonatele acesteia sunt" << " " << " linia " << " " << coordMIN.first+1 << " " << "coloana" << " " << coordMIN.second+1 << endl;
+				cout << "Coordonatele acesteia sunt" << " " << " linia " << " " << coordMIN.first + 1 << " " << "coloana" << " " << coordMIN.second + 1 << endl;
 				system("pause");
 				break;
 
 
-			//case 2 -> se afiseaza maximul matricei 
+				//case 2 -> se afiseaza maximul matricei 
 
-			case 2  : 
+			case 2: //raspunsul este 2 
 
 
 				int max = -9999;
@@ -341,7 +343,7 @@ int main()
 					for (int j = 0; j < m; j++)
 					{
 
-						cout << C[i][j]<<" ";
+						cout << C[i][j] << " ";
 
 					}
 
@@ -351,11 +353,11 @@ int main()
 				}
 				cout << endl;
 				cout << "Valoare maxima a matricei este " << " " << max << endl;
-				cout << "Coordonatele acesteia sunt" << " " << " linia " << " " << coordMAX.first+1 << " " << "coloana" << " " << coordMAX.second+1<< endl;
+				cout << "Coordonatele acesteia sunt" << " " << " linia " << " " << coordMAX.first + 1 << " " << "coloana" << " " << coordMAX.second + 1 << endl;
 				system("pause");
 
 
-				break; 
+				break;
 			}
 
 			if (!arrayBOOL)
@@ -388,12 +390,14 @@ int main()
 			Console_Clear();
 
 
-			
+
 			break;
+#pragma endregion
+#pragma region case 3  - adunare a 2 matrici
 
-		case 3 :
+		case 3:
 
-		//adunare a 2 matrici 
+			//adunare a 2 matrici 
 
 			int M1[100][100], M2[100][100];
 
@@ -406,23 +410,22 @@ int main()
 			//se repeta cat timp numarele  nu sunt egale 
 			do {
 				cout << "Introdu numarul de linii si de coloane al primei matrice : " << endl;
-				
+
 				cin >> n1 >> m1;
 				Console_Clear();
 				cout << "Introdu numarul de linii si de coloane al celei de-a doua matrice :" << endl;
-				
-				cin >> n2 >> m2;			
+
+				cin >> n2 >> m2;
 				if (m1 != m2 || n1 != n2)
 				{
 					repeat_bool = true; cout << "Imi pare rau ,dar numarul de linii si coloane nu corespund " << endl;
 				}
-				else if(m1 == m2 && n1 == n2) repeat_bool = false;
-				
-			    }  
-			while (repeat_bool);
+				else if (m1 == m2 && n1 == n2) repeat_bool = false;
 
-				
-				cout << "Introdu pe rand elementele  primei matrici" << endl;
+			} while (repeat_bool);
+
+
+			cout << "Introdu pe rand elementele  primei matrici" << endl;
 
 
 			// citire matrice 1 
@@ -439,8 +442,8 @@ int main()
 
 
 
-			
-			
+
+
 			Console_Clear();
 			cout << "Introdu pe rand elementele celei de-a doua matrici" << endl;
 
@@ -459,7 +462,7 @@ int main()
 			cout << "Asteapta cat timp se calculeaza suma ..." << endl;
 			Sleep(2500);
 			cout << "Suma celor 2 matrici este : " << endl;
-			
+
 			for (int i = 0; i < n2; i++)
 			{
 				for (int j = 0; j < m2; j++)
@@ -471,27 +474,95 @@ int main()
 
 
 
-		
-			
-			
-			break;
-		
-		
-		
-		case 4 : 
-			Console_Clear();
+
+
 
 			break;
-		case 5: 
+#pragma endregion
+#pragma region case 4 - inmultire a doua matrici 
+
+		case 4:
+
+			int F1[10][10], F2[10][10], F3[10][10];
+			//se face inmultirea a 2 matrici  
 			Console_Clear();
+			//date matrice 
+			int l1, c1;
+			int l2, c2;
+			//se repeta cat timp numarele  nu sunt egale 
+			do {
+				cout << "Introdu numarul de linii si de coloane al primei matrice : " << endl;
+
+				cin >> l1 >> c1;
+				Console_Clear();
+				cout << "Introdu numarul de linii si de coloane al celei de-a doua matrice :" << endl;
+
+				cin >> l2 >> c2;
+				if (c1!=l2)
+				{
+					repeat_bool = true; cout << "Imi pare rau ,dar numarul de linii si coloane nu corespund " << endl;
+				}
+				else if (c1 ==l2) repeat_bool = false;
+				
+			} while (repeat_bool);
+
+			//se citesc pe rand cele 2 matrici 
+			cout << "Introdu	elementele  primei matricei pe rand" << endl;
+
+			for (int i = 0; i < l1; i++)
+				for (int j = 0; j < c1; j++)
+					cin>>F1[i][j];
 			
-			
-			
+			cout << "Introdu	elementele  celei de-a doua matrice pe rand" << endl;
+
+			for (int i = 0; i < l1; i++)
+				for (int j = 0; j < c1; j++)
+					cin >> F2[i][j];
+
+			//se face inmultirea propriu-zisa 
+			for (int i = 0; i < l1; i++)
+			{
+				for (int j = 0; j < c2; j++)
+				{
+					int sum = 0;
+					for (int k = 0; k < c1; k++) 
+					{
+
+						sum += F1[i][k] * F2[k][j];
+					}
+					F3[i][j] = sum;
+				}
+			}
+
+			//se afiseaza matricea rezultata  
+			Console_Clear();
+			cout << "Matricea rezultanta este  :" << endl;
+			for (int i = 0; i < l1; i++)
+			{
+				for (int j = 0; j < c2; j++)
+				{
+					cout << F3[i][j] << " ";
+				}
+				cout << endl;
+			}
+
+
+
+
 			break;
+
+
+#pragma endregion
+
+		
+		case 5: 
+
+			break;
+#pragma region case 6 - transpusa unei matrici 
 		case 6:  //se face transpusa unei matrici 
 
 
-			int T[100][100]; 
+			int T[100][100];
 			if (arrayBOOL)
 			{
 				cout << "Am detectat  o matrice salvata anterior. Doriti sa initializati alta ? " << endl;
@@ -547,68 +618,69 @@ int main()
 
 				}
 			}
-				// se face initializarea matricei daca nu  s-a gasit una salvata sau daca utilzatorul nu a vrut 
+			// se face initializarea matricei daca nu  s-a gasit una salvata sau daca utilzatorul nu a vrut 
 
 
-				Console_Clear();
-				//date matrice 
+			Console_Clear();
+			//date matrice 
 
-				cout << "Introdu numarul de linii si de coloane" << endl;
+			cout << "Introdu numarul de linii si de coloane" << endl;
 
-				cin >> n >> m;
-				Console_Clear();
-				cout << "Introdu pe rand elementele matricei" << endl;
+			cin >> n >> m;
+			Console_Clear();
+			cout << "Introdu pe rand elementele matricei" << endl;
 
 
-				// citire matrice 
-				for (int i = 0; i < n; i++)
+			// citire matrice 
+			for (int i = 0; i < n; i++)
+			{
+				for (int j = 0; j < m; j++)
 				{
-					for (int j = 0; j < m; j++)
-					{
-						cin >> T[i][j];
-					}
+					cin >> T[i][j];
 				}
+			}
 
-			READ_ENDT:
-				Console_Clear();
+		READ_ENDT:
+			Console_Clear();
 
-				int T1[100][100];
+			int T1[100][100];
 
-				//se copiaza coloanele pe linie si liiile pe coloane 
+			//se copiaza coloanele pe linie si liiile pe coloane 
 
-				cout << "Se efectueaza transpusa matricei ... " << endl;
-				Sleep(2500);
-				Console_Clear();
-				for (int i = 0; i < n; i++)
+			cout << "Se efectueaza transpusa matricei ... " << endl;
+			Sleep(2500);
+			Console_Clear();
+			for (int i = 0; i < n; i++)
+			{
+				for (int j = 0; j < m; j++)
 				{
-					for (int j = 0; j < m; j++)
-					{
 
-						T1[j][i] = T[i][j];
-						
-						 
-					}
-				 }
-				
-				cout << "Transpusa este : " << endl;
+					T1[j][i] = T[i][j];
+
+
+				}
+			}
+
+			cout << "Transpusa este : " << endl;
+			cout << endl;
+
+			for (int i = 0; i < n; i++)
+			{
+				for (int j = 0; j < m; j++)
+				{
+
+					cout << T1[i][j] << " ";
+
+
+				}
 				cout << endl;
-
-				for (int i = 0; i < n; i++)
-				{
-					for (int j = 0; j < m; j++)
-					{
-
-						cout << T1[i][j] << " ";
-
-				
-					}
-					cout << endl;
-				}
+			}
 
 
-			
+
 
 			break;
+#pragma endregion
 
 		case  0:   
 			Console_Clear();
