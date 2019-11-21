@@ -1,4 +1,5 @@
 
+
 #include <iostream>
 #include <string.h>
 #include <Windows.h> 
@@ -19,6 +20,8 @@ int default_array[100][100];
 int min = 9999; 
 bool arrayBOOL = false;
 bool repeat_bool = false;
+int p_curr = 2;
+int default_n, default_m;
 int main()
 { 
 	pair <int, int > coordMIN;
@@ -30,7 +33,6 @@ int main()
 	do
 	{
 		cout << "Te rog sa selectezi  o varianta :" << endl;
-
 		cout << "1- BORDARE MATRICE CU CARACTER CERUT " << endl; 
 		cout << "2-GASIRE ELEMENT MININM/MAXIM IN MATRICE " << endl; 
 		cout << "3-ADUNARE 2 MATRICI " << endl; 
@@ -43,12 +45,12 @@ int main()
 		cout << "0-IESIRE " << endl;
 		cin >> menu_choice; 
 		
-		switch ( menu_choice )
+		switch (menu_choice)
 		{
 #pragma region Case 1 - Bordare matrice 
 
 		case 1:
-			int  n, m;
+			int  n, m; //doar pentru cazul 1
 
 			int A[100][100];
 			//verificam daca utilizatorul are o matrice salvata anterior 
@@ -86,7 +88,8 @@ int main()
 				//daca utlizatoru vrea sa foloseasca aceeeasi matrice 
 				else
 				{
-
+					n = default_n;
+					m = default_m;
 					for (int i = 0; i < n; i++)
 					{
 						for (int j = 0; j < m; j++)
@@ -98,6 +101,7 @@ int main()
 					goto END_READ;
 				}
 			}
+
 
 
 			Console_Clear();
@@ -121,13 +125,16 @@ int main()
 
 
 
-		END_READ: cout << "Introdu numarul cu care vrei sa bordezi matricea" << endl;
+		END_READ:
+
+
+			cout << "Introdu numarul cu care vrei sa bordezi matricea" << endl;
 			int border_number;
 			cin >> border_number;
 
 			// se face bordarea matricei 
 			cout << "Se executa bordarea matricei ..." << endl;
-			Sleep(2500);
+
 
 			int B[100][100];
 			for (int i = 0; i < n + 2; i++)
@@ -169,10 +176,13 @@ int main()
 				cin >> rasp;
 				if (rasp == 1)
 				{
-					for (int i = 0; i < n; i++)
+					default_n = n;
+					default_m = m;
+
+					for (int i = 0; i < default_n; i++)
 					{
 
-						for (int j = 0; j < m; j++) {
+						for (int j = 0; j < default_m; j++) {
 
 							default_array[i][j] = A[i][j];
 
@@ -196,7 +206,7 @@ int main()
 		case 2:
 
 			int C[100][100];
-
+			int nmax, mmax;
 
 			if (arrayBOOL)
 			{
@@ -213,15 +223,15 @@ int main()
 
 					cout << "Introdu numarul de linii si de coloane" << endl;
 
-					cin >> n >> m;
+					cin >> nmax >> mmax;
 					Console_Clear();
 					cout << "Introdu pe rand elementele matricei" << endl;
 
 
 					// citire matrice 
-					for (int i = 0; i < n; i++)
+					for (int i = 0; i < nmax; i++)
 					{
-						for (int j = 0; j < m; j++)
+						for (int j = 0; j < mmax; j++)
 						{
 							cin >> C[i][j];
 						}
@@ -231,10 +241,11 @@ int main()
 				//utilizatrorul decide sa foloseasca matricea default 
 				else
 				{
-
-					for (int i = 0; i < n; i++)
+					mmax = default_m;
+					nmax = default_n;
+					for (int i = 0; i < default_n; i++)
 					{
-						for (int j = 0; j < m; j++)
+						for (int j = 0; j < default_m; j++)
 						{
 							C[i][j] = default_array[i][j];
 						}
@@ -254,15 +265,15 @@ int main()
 
 			cout << "Introdu numarul de linii si de coloane" << endl;
 
-			cin >> n >> m;
+			cin >> nmax >> mmax;
 			Console_Clear();
 			cout << "Introdu pe rand elementele matricei" << endl;
 
 
 			// citire matrice 
-			for (int i = 0; i < n; i++)
+			for (int i = 0; i < nmax; i++)
 			{
-				for (int j = 0; j < m; j++)
+				for (int j = 0; j < mmax; j++)
 				{
 					cin >> C[i][j];
 				}
@@ -283,9 +294,9 @@ int main()
 			case 1: //raspunsul este 1 
 
 
-				for (int i = 0; i < n; i++)
+				for (int i = 0; i < nmax; i++)
 				{
-					for (int j = 0; j < m; j++)
+					for (int j = 0; j < mmax; j++)
 					{
 						if (C[i][j] < min)
 						{
@@ -296,9 +307,9 @@ int main()
 					}
 				}
 
-				for (int i = 0; i < n; i++)
+				for (int i = 0; i < nmax; i++)
 				{
-					for (int j = 0; j < m; j++)
+					for (int j = 0; j < mmax; j++)
 					{
 
 						cout << C[i][j] << " ";
@@ -325,9 +336,9 @@ int main()
 
 				int max = -9999;
 
-				for (int i = 0; i < n; i++)
+				for (int i = 0; i < nmax; i++)
 				{
-					for (int j = 0; j < m; j++)
+					for (int j = 0; j < mmax; j++)
 					{
 						if (C[i][j] > max)
 						{
@@ -338,9 +349,9 @@ int main()
 					}
 				}
 
-				for (int i = 0; i < n; i++)
+				for (int i = 0; i < nmax; i++)
 				{
-					for (int j = 0; j < m; j++)
+					for (int j = 0; j < mmax; j++)
 					{
 
 						cout << C[i][j] << " ";
@@ -369,10 +380,12 @@ int main()
 				cin >> rasp_case2;
 				if (rasp_case2 == 1)
 				{
-					for (int i = 0; i < n; i++)
+					default_n = nmax;
+					default_m = mmax;
+					for (int i = 0; i < default_n; i++)
 					{
 
-						for (int j = 0; j < m; j++) {
+						for (int j = 0; j < default_n; j++) {
 
 							default_array[i][j] = C[i][j];
 
@@ -467,7 +480,7 @@ int main()
 			{
 				for (int j = 0; j < m2; j++)
 				{
-					cout << M1[i][j] << "             " << M2[i][j] << " ";
+					cout << M1[i][j] + M2[i][j] << " ";
 				}
 				cout << endl;
 			}
@@ -498,12 +511,12 @@ int main()
 				cout << "Introdu numarul de linii si de coloane al celei de-a doua matrice :" << endl;
 
 				cin >> l2 >> c2;
-				if (c1!=l2)
+				if (c1 != l2)
 				{
 					repeat_bool = true; cout << "Imi pare rau ,dar numarul de linii si coloane nu corespund " << endl;
 				}
-				else if (c1 ==l2) repeat_bool = false;
-				
+				else if (c1 == l2) repeat_bool = false;
+
 			} while (repeat_bool);
 
 			//se citesc pe rand cele 2 matrici 
@@ -511,13 +524,38 @@ int main()
 
 			for (int i = 0; i < l1; i++)
 				for (int j = 0; j < c1; j++)
-					cin>>F1[i][j];
-			
+					cin >> F1[i][j];
+
 			cout << "Introdu	elementele  celei de-a doua matrice pe rand" << endl;
 
-			for (int i = 0; i < l1; i++)
-				for (int j = 0; j < c1; j++)
+			for (int i = 0; i < l2; i++)
+				for (int j = 0; j < c2; j++)
 					cin >> F2[i][j];
+			//se afiseaza cele 2 matrici 
+
+
+	/*		for (int i = 0; i < l1; i++)
+	    {
+			{
+				for (int j = 0; j < c1; j++)
+					cout << F1[i] << " ";
+			}
+			cout << endl;
+		}
+			cout << endl;
+			for (int i = 0; i < l2; i++)
+			{
+				{
+					for (int j = 0; j < c2; j++)
+						cout << F2[i][j] << " ";
+				}
+				cout << endl;
+			}*/
+
+
+
+
+				/*system("PAUSE");*/
 
 			//se face inmultirea propriu-zisa 
 			for (int i = 0; i < l1; i++)
@@ -553,16 +591,189 @@ int main()
 
 
 #pragma endregion
+#pragma region case5 - ridicare la putere 
 
-		
-		case 5: 
+
+
+		case 5:
+
+
+
+
+			int P[100][100], R[50][50], Q[50][50];
+			int n3, m3;
+			 
+			if (arrayBOOL)
+			{
+				cout << "Am detectat  o matrice salvata anterior. Doriti sa initializati alta ? " << endl;
+				cout << "1-DA" << " " << "2-NU" << endl;
+				int change_array;
+				cin >> change_array;
+				//se initializeaza o alta matrice 
+
+				if (change_array == 1)
+				{
+					Console_Clear();
+					//date matrice 
+
+					cout << "Introdu numarul de linii si de coloane" << endl;
+
+					cin >> n3 >> m3;
+					Console_Clear();
+					cout << "Introdu pe rand elementele matricei" << endl;
+
+
+					// citire matrice 
+					for (int i = 0; i < n3; i++)
+					{
+						for (int j = 0; j < m3; j++)
+						{
+							cin >> P[i][j];
+						}
+					}
+					goto END_READ3;
+				}
+				//utilizatrorul decide sa foloseasca matricea default 
+				else
+				{
+					n3 = default_n;
+					m3 = default_m;
+
+					for (int i = 0; i < default_n; i++)
+					{
+						for (int j = 0; j < default_m; j++)
+						{
+							P[i][j] = default_array[i][j];
+							Q[i][j] = P[i][j];
+						}
+					}
+
+					goto END_READ3;
+				}
+
+			}
+			
+
+			cout << "Te rog sa introduci numarul de linii si coloane " << endl;
+			cin >> n3 >> m3;
+			Console_Clear();
+			cout<< "Introdu pe rand elementele matricei"<<endl;
+			
+			for (int i = 0; i < n3; i++)
+			{
+				for (int j = 0; j < m3; j++)
+				{
+					cin >> P[i][j];
+					Q[i][j] = P[i][j];
+				}
+			}
+			    
+			END_READ3:
+			
+			cout << "Introdu puterea la care vrei sa se calculeze matricea " << endl;
+			int pow;
+			cin >> pow;
+
+			Console_Clear();
+			cout << "Se ridica la putere matricea ..." << endl;
+			
+	
+			for(int times = 2 ; times <= pow  ;times++)
+			{
+				//R = P *Q ; 
+				for (int i = 0; i < n3; i++)
+				{
+					for (int j = 0; j <m3; j++)
+					{
+						int sum = 0;
+						for (int k = 0; k < m3; k++)
+						{
+
+							sum += P[i][k] * Q[k][j];
+						}
+						R[i][j] = sum;
+					}
+				}
+			
+
+				//P egal cu Q si se repeta 
+				 
+				for (int i = 0; i < n3; i++)
+				{
+					for (int j = 0; j < m3; j++)
+					{
+						
+					Q[i][j] =R[i][j];
+					}
+				}
+
+
+
+			}
+			cout << "Rezultatul este : " << endl;
+
+			//afisare rez 
+			for (int i = 0; i < n3; i++)
+			{
+				for (int j = 0; j < m3; j++)
+				{
+					cout << R[i][j]<< " ";
+				}
+				cout << endl;
+			}
+
+
+			//daca nu este nici o matrice salvata .. 
+			if (!arrayBOOL)
+			{
+
+				cout << "Doresti sa salvezi matricea introdusa anterior pentru toate exemplele ? " << endl;
+				cout << "1-DA" << " " << "2-NU" << endl;
+				int rasp_case2;
+				cin >> rasp_case2;
+				if (rasp_case2 == 1)
+				{
+					default_n = n3;
+					default_m = m3;
+					for (int i = 0; i < default_n; i++)
+					{
+
+						for (int j = 0; j < default_m; j++) {
+
+							default_array[i][j] = P[i][j];
+
+						}
+
+					}
+
+					cout << "Matrice salvata cu succes ! " << endl;
+
+					arrayBOOL = true;
+				}
+				else { arrayBOOL = false; }
+			}
+			system("PAUSE");
+			Console_Clear();
+			
 
 			break;
+
+
+
+
+
+
+
+
+
+
+
+#pragma endregion
 #pragma region case 6 - transpusa unei matrici 
 		case 6:  //se face transpusa unei matrici 
 
 
-			int T[100][100];
+			int T[100][100];  int nT, mT;
 			if (arrayBOOL)
 			{
 				cout << "Am detectat  o matrice salvata anterior. Doriti sa initializati alta ? " << endl;
@@ -579,15 +790,15 @@ int main()
 
 					cout << "Introdu numarul de linii si de coloane" << endl;
 
-					cin >> n >> m;
+					cin >> nT >> mT;
 					Console_Clear();
 					cout << "Introdu pe rand elementele matricei" << endl;
 
 
 					// citire matrice 
-					for (int i = 0; i < n; i++)
+					for (int i = 0; i < nT; i++)
 					{
-						for (int j = 0; j < m; j++)
+						for (int j = 0; j < mT; j++)
 						{
 							cin >> T[i][j];
 						}
@@ -601,11 +812,12 @@ int main()
 
 
 					//se copiaza matricea salvata in T 
+					nT = default_n;
+					mT = default_m;
 
-
-					for (int i = 0; i < n; i++)
+					for (int i = 0; i < default_n; i++)
 					{
-						for (int j = 0; j < m; j++)
+						for (int j = 0; j < default_m; j++)
 						{
 							T[i][j] = default_array[i][j];
 						}
@@ -626,15 +838,15 @@ int main()
 
 			cout << "Introdu numarul de linii si de coloane" << endl;
 
-			cin >> n >> m;
+			cin >> nT >> mT;
 			Console_Clear();
 			cout << "Introdu pe rand elementele matricei" << endl;
 
 
 			// citire matrice 
-			for (int i = 0; i < n; i++)
+			for (int i = 0; i < nT; i++)
 			{
-				for (int j = 0; j < m; j++)
+				for (int j = 0; j < mT; j++)
 				{
 					cin >> T[i][j];
 				}
@@ -650,9 +862,9 @@ int main()
 			cout << "Se efectueaza transpusa matricei ... " << endl;
 			Sleep(2500);
 			Console_Clear();
-			for (int i = 0; i < n; i++)
+			for (int i = 0; i < nT; i++)
 			{
-				for (int j = 0; j < m; j++)
+				for (int j = 0; j < mT; j++)
 				{
 
 					T1[j][i] = T[i][j];
@@ -664,9 +876,9 @@ int main()
 			cout << "Transpusa este : " << endl;
 			cout << endl;
 
-			for (int i = 0; i < n; i++)
+			for (int i = 0; i < nT; i++)
 			{
-				for (int j = 0; j < m; j++)
+				for (int j = 0; j < mT; j++)
 				{
 
 					cout << T1[i][j] << " ";
