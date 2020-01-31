@@ -19,6 +19,7 @@ int rez = 0;
     while (n!=0)
     {
         int rest  = n%q;
+        n/=q;
         rez += pow(10 , i)*rest;
     }
     return rez;
@@ -33,6 +34,7 @@ char* f2 ( int n , int q )
    while(n!=0)
     {
         int rest = n%q;
+        n/=q;
         if(rest >9)
      {
         char c = 'A'+rest-2;
@@ -52,13 +54,32 @@ for(int k = 0 , j=i k<j;k++,j--)
 
 
 return rez;
+}
+
+//din baza  q<10  in baza 10
+int f3(int q , int n )
+{
+//se inmulteste cu puteri ale lui  i
+int rez = 0;
+while(n!=0)
+    {
+
+
+
+
+
+
+
+
+
+
+
+    }
+
 
 
 
 }
-
-
-
 
 int main()
 {
