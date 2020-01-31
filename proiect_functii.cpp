@@ -27,9 +27,9 @@ int rez = 0;
 //din baza 10 in baza q data , q>10
 
 char* f2 ( int n , int q )
-{   int i = 0 ; 
+{   int i = 0 ;
     char rez[30];
-//1234 -> baza 11 A22 
+//1234 -> baza 11 A22
    while(n!=0)
     {
         int rest = n%q;
@@ -38,19 +38,23 @@ char* f2 ( int n , int q )
         char c = 'A'+rest-2;
         rez[i] =c;
      }
-        else 
+        else
         {
-         // facem restul un caracter 
-          
-            
+         // facem restul un caracter
+          char c = rest +'0';
+           rez[i] =c ;
         }
     }
-    
-    
-    
-    
-    
-    
+
+rez[i+1]=NULL;
+for(int k = 0 , j=i k<j;k++,j--)
+    swap(rez[k] , rez[j]);
+
+
+return rez;
+
+
+
 }
 
 
