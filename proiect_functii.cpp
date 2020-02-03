@@ -10,7 +10,7 @@ using namespace std;
  }
 
 //din baza 10 in baza q data , q<10
-int f1 (int n , int q )
+int f1 (int n , int q ) //checked 
 {
 
 int rez = 0;
@@ -19,14 +19,15 @@ int rez = 0;
     while (n!=0)
     {
         int rest  = n%q;
+      
         n/=q;
         rez += pow(10 , i)*rest;
+        i++;
     }
     return rez;
 }
 
 //din baza 10 in baza q data , q>10
-
 char* f2 ( int n , int q )
 {   int i = 0 ;
     char rez[30];
@@ -37,52 +38,61 @@ char* f2 ( int n , int q )
         n/=q;
         if(rest >9)
      {
-        char c = 'A'+rest-2;
+        char c = 'A'+rest-10;
         rez[i] =c;
+    
+        i++;
      }
         else
         {
          // facem restul un caracter
           char c = rest +'0';
-           rez[i] =c ;
+       
+          rez[i] =c ;
+           i++;
         }
     }
-
 rez[i+1]=NULL;
-for(int k = 0 , j=i k<j;k++,j--)
-    swap(rez[k] , rez[j]);
+   char rez1[100]; 
+   for (int i = strlen(rez), j = 0; i >= 0; i--, j--) {
+       rez1[j] = rez[i];
+      
+   }
+   cout << strlen(rez)<< "lenght";
+   rez1[strlen(rez)-1] = NULL; 
+return rez1;
+}//checked 
 
-
-return rez;
-}
-
-//din baza  q<10  in baza 10
-int f3(int q , int n )
+//din baza  q<10  in baza 10//checked 
+int f3(int n , int q )
 {
 //se inmulteste cu puteri ale lui  i
+    //1234 -> 
 int rez = 0;
+int i = 0;
 while(n!=0)
     {
-
-
-
-
-
-
-
-
-
-
-
+    rez += n % 10 * pow(q, i);
+    n /= 10;
+    i++;
     }
 
 
 
-
+return rez; 
 }
+
+//din baza q>10 in baza b 
+
 
 int main()
 {
+    cout << f3(123,4);
+
+
+   
+
+
 
     return 0;
 }
