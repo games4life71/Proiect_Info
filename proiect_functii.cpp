@@ -20,9 +20,9 @@ bool isLetter(char S)
 }
 
 int f(char n[20], int q)
-{    //1010 binar ->  0xq la puterea 0 
+{    //1010 binar ->  0xq la puterea 0
     //A in base 11 -> 10
-    int x = 0, i, p = 1;
+    int x = 0, i;
 
     for (i = strlen(n) - 1; i >= 0; i--)
     {
@@ -33,7 +33,7 @@ int f(char n[20], int q)
             x += temp * pow(q, strlen(n) - 1 - i);
         }
 
-        //daca este litera 
+        //daca este litera
         else {
 
             int temp = n[i] - 'A' + 10;
@@ -49,13 +49,13 @@ int f(char n[20], int q)
 }
 
 //din baza 10 in baza q data , q<10
-int f1(int n, int q) //checked
+int f1(long long n, int q) //checked
 
 {
 
 
 
-    int rez = 0;
+    double  rez = 0;
 
     //1223 -> in baza 5
 
@@ -111,7 +111,7 @@ void fp(int n, int q, char rasp[20])
         else
 
         {
-            // facem restul un numar caracter 
+            // facem restul un numar caracter
 
             char c = rest + '0';
             rez[i] = c;
@@ -124,7 +124,7 @@ void fp(int n, int q, char rasp[20])
 
 
 
-    //return rez inversat 
+    //return rez inversat
 
     //22A --> A22
     char rez1[20];
@@ -171,15 +171,16 @@ int f3(int n, int q)
 //din baza p in baza q
 void f4(int p, int q, char n[20])
 {
-    
-    
-    //se converteste numarul in baza 10 indiferent 
+
+
+    //se converteste numarul in baza 10 indiferent
 
     int temp = f(n, p);
 
-    //in temp e numarul in baza 10 
-    //daca q este mai mare decat 10 
-    if (q > 10)  fp(temp, q, n);
+    //in temp e numarul in baza 10
+    //daca q este mai mare decat 10
+    if (q > 10) fp(temp, q, n);
+
     else {
         cout << "Rezultatul este" << " " << f1(temp, q) << endl;
 
@@ -192,15 +193,14 @@ void f4(int p, int q, char n[20])
 
 int main()
 {
-  
-     
-     
+
+
     int aleg;
         do
     {
 
         cout << "Introdu alegerea : " << endl;
-    
+
         cout << "1- Din baza introdusa in baza 10 :" << endl;
         cout << "2-Din baza 10 in baza introdusa" << endl;
         cout << "3-Din baza q in baza p introduse" << endl;
@@ -213,54 +213,54 @@ int main()
         case 1: //din baza introdusa in baza 10
             cout << "Introdu baza din care vrei sa faci conversia" << endl;
             cin >> q;
-            char n[20]; 
+            char n[20];
             cout << "Introdu numarul" << endl;
             cin>>n;
-           
+
             if (q == 10) cout <<"Raspunsul este "<< " " << n;
             else cout << "Raspunsul este" << " " << f(n, q);
 
             break;
-       
-            //din baza 10 in baza introdusa
-               
 
-        case 2 : 
+            //din baza 10 in baza introdusa
+
+
+        case 2 :
             cout << "Introdu numarul in baza 10 " << endl;
             int n1;
             cin >> n1;
-            char rasp[20]; 
+            char rasp[20];
             cout << "Introdu baza in care vrei sa faci conversia" << endl;
             cin >> q;
             if (q < 10) cout << "rezultatul este" << " " << f1(n1, q) << endl;
             else {
-                //daca baza este mai mare decat 10 se afiseaza char  
+                //daca baza este mai mare decat 10 se afiseaza char
                 fp(n1, q, rasp);
                 cout << "Rezultatul este " << " " << rasp << endl;
 
             }
 
-            break; 
+            break;
 
 
-        case 3 : 
-            //din baza q in baza p 
-             
-            int b; 
+        case 3 :
+            //din baza q in baza p
+
+            int b;
             cout << "Introdu baza din care vrei sa faci conversia" << endl;
             cin >> b;
             cout << "Introdu baza in care vrei sa faci conversia" << endl;
             cin >> q;
             cout << "Introdu numarul" << endl;
-          
-            char np[20]; 
+
+            char np[20];
             cin >> np;
 
             f4(b, q, np);
+             cout<<"Raspunsul este "<<" " <<np<<endl;
 
-            
 
-
+break;
         case 4: cout<<"Ai selectat sa iesi din aplicatie" << endl;
             break;
         }
@@ -268,7 +268,7 @@ int main()
         cout << "Continua ...";
         cout << endl;
         cin.get();
- 
+
 
     } while (aleg != 4);
 
